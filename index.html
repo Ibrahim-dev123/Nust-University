@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>National University of Sciences &amp; Technology (NUST)</title>
+  <!-- Google Fonts: Source Serif 4 & Source Sans 3 for Stanford-style Editorial Prestige -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nustObsidian: '#040B16',
+            nustMidnight: '#071122',
+            nustNavy: '#0B182E',
+            nustBlue: '#0F203D',
+            nustCard: '#0F213E',
+            nustDeep: '#030811',
+            nustGold: '#D4AF37',
+            nustGoldDark: '#B58E22',
+            nustLightText: '#F8FAFC',
+            nustSilver: '#CBD5E1',
+            nustMuted: '#94A3B8'
+          },
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+            sans: ['"Source Sans 3"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: #CBD5E1;
+      background-color: #040B16;
+      overflow-x: hidden;
+    }
+    .font-editorial {
+      font-family: 'Source Serif 4', Georgia, serif;
+    }
+
+    /* =========================================================
+       1. TOP GOLD SCROLL PROGRESS BAR
+       ========================================================= */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #B58E22 0%, #D4AF37 50%, #F3D97E 100%);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.75);
+      z-index: 100;
+      transition: width 0.08s linear;
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       2. HERO KEN BURNS & STAGGERED ENTRANCE ANIMATIONS
+       ========================================================= */
+    @keyframes kenBurnsSlow {
+      0% {
+        transform: scale(1.02) translate3d(0, 0, 0);
+      }
+      50% {
+        transform: scale(1.1) translate3d(-1.2%, -0.8%, 0);
+      }
+      100% {
+        transform: scale(1.02) translate3d(0, 0, 0);
+      }
+    }
+    .hero-ken-burns {
+      animation: kenBurnsSlow 28s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes heroFadeDown {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -18px, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes heroTitleReveal {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 32px, 0) scale(0.96);
+        letter-spacing: 0.06em;
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        letter-spacing: -0.025em;
+      }
+    }
+
+    @keyframes heroFadeUp {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes floatChevron {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    @keyframes ambientPulse {
+      0%, 100% {
+        opacity: 0.35;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.08);
+      }
+    }
+
+    .hero-anim-pill {
+      opacity: 0;
+      animation: heroFadeDown 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+    .hero-anim-title {
+      opacity: 0;
+      animation: heroTitleReveal 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+    }
+    .hero-anim-subtitle {
+      opacity: 0;
+      animation: heroFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+    .hero-anim-bar {
+      opacity: 0;
+      animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+    }
+    .chevron-float {
+      animation: floatChevron 2.2s ease-in-out infinite;
+    }
+    .ambient-orb {
+      animation: ambientPulse 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       3. STICKY DARK GLASSMORPHISM HEADER
+       ========================================================= */
+    #main-header {
+      transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    #main-header.scrolled {
+      background-color: rgba(4, 11, 22, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    #main-header.scrolled #utility-bar {
+      background-color: rgba(7, 17, 34, 0.96);
+      border-bottom-color: rgba(212, 175, 55, 0.2);
+    }
+
+    .crest-badge {
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.35s ease;
+    }
+    .nav-brand:hover .crest-badge {
+      transform: rotate(-4deg) scale(1.07);
+      border-color: #D4AF37;
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.45);
+    }
+
+    /* Mobile Drawer Smooth Toggle */
+    #mobile-menu {
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       4. SCROLL-TRIGGERED REVEALS (INTERSECTION OBSERVER)
+       ========================================================= */
+    .reveal-up {
+      opacity: 0;
+      transform: translate3d(0, 34px, 0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translate3d(-34px, 0, 0);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translate3d(34px, 0, 0);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95) translate3d(0, 22px, 0);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-up.is-visible,
+    .reveal-left.is-visible,
+    .reveal-right.is-visible,
+    .reveal-scale.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* Gold Divider Expand */
+    .gold-divider-anim {
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+    }
+    .is-visible .gold-divider-anim,
+    .gold-divider-anim.is-visible {
+      transform: scaleX(1);
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    /* =========================================================
+       5. DARK FROSTED CARDS & TACTILE HOVER MICRO-INTERACTIONS
+       ========================================================= */
+    .dark-glass-card {
+      background: rgba(15, 33, 62, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background-color 0.35s ease;
+    }
+    .dark-glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 175, 55, 0.5);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), 0 0 24px rgba(212, 175, 55, 0.12);
+    }
+
+    .editorial-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+    }
+    .editorial-card:hover {
+      transform: translateY(-6px);
+    }
+    .editorial-card img {
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .editorial-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Gold / Navy Executive CTA Buttons */
+    .btn-gold-exec {
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, background-color 0.28s ease;
+    }
+    .btn-gold-exec:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(212, 175, 55, 0.45);
+    }
+    .btn-gold-exec:active {
+      transform: translateY(0);
+    }
+
+    /* Event Row Hover */
+    .event-item {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+      border-radius: 0.75rem;
+      padding: 0.55rem;
+      margin: -0.55rem;
+    }
+    .event-item:hover {
+      transform: translateX(6px);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .event-date-badge {
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .event-item:hover .event-date-badge {
+      border-color: rgba(212, 175, 55, 0.7);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.22);
+      transform: scale(1.04);
+    }
+
+    /* Tab Content Cross-Fade & Slide */
+    @keyframes panelCrossFade {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-panel-switch {
+      animation: panelCrossFade 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Underline hover animation */
+    .stanford-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .stanford-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: currentColor;
+      transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .stanford-link:hover::after {
+      width: 100%;
+    }
+    .stanford-link i {
+      transition: transform 0.25s ease;
+    }
+    .stanford-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       6. MODAL & SEARCH OVERLAY SPRING TRANSITIONS
+       ========================================================= */
+    .modal-backdrop {
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+    .modal-backdrop.active {
+      opacity: 1;
+    }
+    .modal-dialog {
+      opacity: 0;
+      transform: scale(0.94) translateY(16px);
+      transition: opacity 0.34s cubic-bezier(0.16, 1, 0.3, 1), transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.active .modal-dialog {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* =========================================================
+       7. ACCESSIBILITY: REDUCED MOTION SUPPORT
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-up, .reveal-left, .reveal-right, .reveal-scale,
+      .hero-anim-pill, .hero-anim-title, .hero-anim-subtitle, .hero-anim-bar {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .gold-divider-anim {
+        transform: scaleX(1) !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased bg-nustObsidian text-nustSilver selection:bg-nustGold selection:text-nustObsidian">
+
+  <!-- Top NUST Gold Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- =========================================================
+       STICKY HEADER (UTILITY BAR + PRIMARY NAVIGATION)
+       ========================================================= -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-nustLightText bg-gradient-to-b from-nustObsidian/90 via-nustObsidian/55 to-transparent">
+    <!-- Top Thin Utility Bar -->
+    <div id="utility-bar" class="border-b border-white/10 transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between text-xs sm:text-[13px] tracking-wide">
+        <div class="flex items-center space-x-3 sm:space-x-5 overflow-x-auto whitespace-nowrap py-1 text-nustSilver">
+          <span class="font-semibold text-nustGold hidden sm:inline">Information for:</span>
+          <button onclick="openInfoModal('Students')" class="hover:text-nustGold transition">Students</button>
+          <button onclick="openInfoModal('Faculty & Staff')" class="hover:text-nustGold transition">Faculty &amp; Staff</button>
+          <button onclick="openInfoModal('Families')" class="hover:text-nustGold transition">Families</button>
+          <button onclick="openInfoModal('Visitors')" class="hover:text-nustGold transition">Visitors</button>
+          <button onclick="openInfoModal('Alumni')" class="hover:text-nustGold transition">Alumni</button>
+        </div>
+        <div class="flex items-center space-x-4 pl-2">
+          <button onclick="toggleSearchOverlay()" aria-label="Search NUST" class="flex items-center gap-1.5 font-semibold text-nustLightText hover:text-nustGold transition px-2.5 py-1 rounded hover:bg-white/5">
+            <i class="fa-solid fa-magnifying-glass text-xs text-nustGold"></i>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Brand & Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <!-- University Wordmark & Emblem -->
+      <a href="#" class="nav-brand flex items-center gap-3 group focus:outline-none">
+        <!-- Custom NUST Crest SVG -->
+        <div class="crest-badge w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-nustNavy border border-nustGold/70 flex items-center justify-center shadow-lg shrink-0">
+          <svg viewBox="0 0 64 64" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6L54 15V31C54 45.2 44.6 55.4 32 59C19.4 55.4 10 45.2 10 31V15L32 6Z" fill="#071122" stroke="#D4AF37" stroke-width="3"/>
+            <path d="M21 43V21L33 36V21" stroke="#F8FAFC" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="43" cy="24" r="3" fill="#D4AF37"/>
+            <path d="M39 43H47" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <span class="font-editorial font-bold text-xl sm:text-2xl tracking-tight text-nustLightText block group-hover:text-nustGold transition-colors">NUST</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.14em] text-nustSilver/90 hidden md:block">National University of Sciences &amp; Technology</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Primary Navigation" class="hidden lg:flex items-center space-x-6 xl:space-x-7 font-semibold text-[16px] text-nustLightText">
+        <a href="#news" class="nav-link hover:text-nustGold transition py-2">News</a>
+        <a href="#events" class="nav-link hover:text-nustGold transition py-2">Events</a>
+        <a href="#academics" class="nav-link hover:text-nustGold transition py-2">Academics</a>
+        <a href="#research" class="nav-link hover:text-nustGold transition py-2">Research</a>
+        <a href="#wellness" class="nav-link hover:text-nustGold transition py-2">Health &amp; Wellness</a>
+        <a href="#campus-life" class="nav-link hover:text-nustGold transition py-2">Campus Life</a>
+        <a href="#admission" class="nav-link hover:text-nustGold transition py-2">Admission</a>
+        <a href="#mission" class="nav-link hover:text-nustGold transition py-2">About</a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open Menu" class="lg:hidden nav-brand text-nustLightText p-2.5 rounded-lg hover:bg-white/10 transition">
+        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-nustMidnight/98 backdrop-blur-xl text-nustLightText border-t border-white/10 px-6 py-5 space-y-3 shadow-2xl">
+      <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">News</a>
+      <a href="#events" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Events</a>
+      <a href="#academics" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Academics</a>
+      <a href="#research" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Research</a>
+      <a href="#wellness" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Health &amp; Wellness</a>
+      <a href="#campus-life" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Campus Life</a>
+      <a href="#admission" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold border-b border-white/10 hover:text-nustGold transition">Admission</a>
+      <a href="#mission" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold hover:text-nustGold transition">About NUST</a>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       FULL-SCREEN STANFORD-STYLE EDITORIAL HERO SECTION
+       ========================================================= -->
+  <section class="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-nustObsidian">
+    <!-- Hero Background Image with Ken Burns Motion & Fallback -->
+    <img
+      src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=85"
+      onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/040B16/D4AF37?text=NUST+H-12+Campus+Islamabad';"
+      alt="NUST Main Campus Architecture, Sector H-12 Islamabad"
+      class="hero-ken-burns absolute inset-0 w-full h-full object-cover object-center opacity-75"
+    />
+    <!-- Rich Dark Midnight Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-nustObsidian/85 via-nustMidnight/65 to-nustObsidian"></div>
+    <!-- Subtle Ambient Gold Radial Glow -->
+    <div class="ambient-orb absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] rounded-full bg-nustGold/10 blur-[120px]"></div>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-28"></div>
+
+    <!-- Centered Monumental Title -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center my-auto">
+      <p class="hero-anim-pill inline-block text-nustGold uppercase tracking-[0.25em] text-xs sm:text-sm font-bold mb-4 bg-nustNavy/80 backdrop-blur-md px-5 py-1.5 rounded-full border border-nustGold/40 shadow-lg">
+        Islamabad &bull; Rawalpindi &bull; Risalpur &bull; Karachi &bull; Quetta
+      </p>
+      <h1 class="hero-anim-title font-editorial font-black text-nustLightText text-6xl sm:text-8xl md:text-9xl tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+        NUST
+      </h1>
+      <p class="hero-anim-subtitle mt-4 sm:mt-6 text-nustSilver font-editorial text-xl sm:text-3xl md:text-4xl font-normal max-w-3xl mx-auto leading-snug drop-shadow">
+        Defining the Future of Science, Technology &amp; Innovation in Pakistan
+      </p>
+    </div>
+
+    <!-- Stanford-Style Full-Width Bottom Explore Bar -->
+    <div class="hero-anim-bar relative z-10 w-full bg-nustNavy/90 backdrop-blur-md hover:bg-nustBlue transition-colors border-t border-white/10">
+      <a href="#mission" class="max-w-7xl mx-auto px-4 py-4 sm:py-5 flex items-center justify-center gap-2.5 text-nustLightText font-bold text-base sm:text-lg tracking-wide group">
+        <span class="group-hover:text-nustGold transition-colors">Explore NUST</span>
+        <i class="fa-solid fa-chevron-down text-nustGold chevron-float"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 1: "A SOCIETAL MISSION" (STANFORD EDITORIAL STATEMENT)
+       ========================================================= -->
+  <section id="mission" class="relative py-20 sm:py-28 bg-nustMidnight border-t border-white/10 overflow-hidden">
+    <!-- Ambient Spotlight -->
+    <div class="absolute -top-32 right-1/4 w-96 h-96 rounded-full bg-nustBlue/30 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center reveal-up">
+      <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+        A Societal Mission
+      </h2>
+      <div class="gold-divider-anim w-20 h-1 bg-nustGold mx-auto mt-5 mb-8 rounded-full shadow-[0_0_12px_rgba(212,175,55,0.6)]"></div>
+      <p class="text-xl sm:text-2xl md:text-[27px] text-nustSilver leading-relaxed font-normal">
+        NUST was founded to accelerate Pakistan’s scientific and technological advancement, and its purpose has expanded to meet the challenges of a rapidly changing world. From groundbreaking research at the National Science &amp; Technology Park (NSTP) to nurturing ethical leaders across engineering, computing, business, and social sciences, we are dedicated to impact.
+      </p>
+      <div class="mt-10">
+        <button onclick="openMissionModal()" class="btn-gold-exec inline-flex items-center justify-center bg-nustGold hover:bg-nustGoldDark text-nustObsidian font-bold text-base sm:text-lg px-9 py-4 rounded-md shadow-lg">
+          More about NUST
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 2: "NUST NEWS" (ASYMMETRIC EDITORIAL GRID)
+       ========================================================= -->
+  <section id="news" class="relative py-20 sm:py-24 bg-nustObsidian border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Heading -->
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+          NUST News
+        </h2>
+        <p class="mt-3 text-lg sm:text-xl text-nustMuted">
+          Stories about people, research, and innovation across the university
+        </p>
+      </div>
+
+      <!-- Asymmetric News Grid (Featured Left 2-Col + Right 1-Col + Bottom 3-Col) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        <!-- Featured Large Story Card (Spans 8 cols on desktop) -->
+        <article onclick="openNewsModal(0)" class="reveal-up editorial-card dark-glass-card lg:col-span-8 relative rounded-xl overflow-hidden group cursor-pointer min-h-[380px] sm:min-h-[450px] flex flex-col justify-end">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80"
+            onerror="this.onerror=null;this.src='https://placehold.co/1200x700/0B182E/D4AF37?text=NSTP+Innovation+Hub';"
+            alt="National Science and Technology Park NUST"
+            class="absolute inset-0 w-full h-full object-cover opacity-75"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-nustObsidian via-nustObsidian/65 to-transparent"></div>
+          <div class="relative z-10 p-6 sm:p-10 text-nustLightText">
+            <span class="inline-block text-xs sm:text-sm font-bold uppercase tracking-widest text-nustGold mb-2">
+              Innovation &amp; Entrepreneurship
+            </span>
+            <h3 class="font-editorial font-bold text-2xl sm:text-4xl leading-tight group-hover:text-nustGold transition-colors">
+              National Science &amp; Technology Park (NSTP) Surpasses 100 High-Tech Startups
+            </h3>
+            <p class="mt-3 text-nustSilver text-sm sm:text-base max-w-2xl line-clamp-2">
+              Pakistan’s premier university-hosted tech park reaches a historic milestone in deep-tech commercialization, exporting AI, FinTech, and AgriTech solutions worldwide.
+            </p>
+          </div>
+        </article>
+
+        <!-- Secondary Card 2 (Spans 4 cols on desktop) -->
+        <article onclick="openNewsModal(1)" class="reveal-up delay-100 editorial-card dark-glass-card lg:col-span-4 rounded-xl overflow-hidden flex flex-col cursor-pointer group">
+          <div class="h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/0F203D/D4AF37?text=AI+Healthcare+Lab';"
+              alt="AI Healthcare Diagnostics"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-nustGold">
+                Science &amp; Technology
+              </span>
+              <h3 class="font-editorial font-bold text-xl text-nustLightText mt-2 leading-snug group-hover:text-nustGold transition-colors">
+                NUST Researchers Develop Low-Cost AI Diagnostics for Rural Healthcare
+              </h3>
+            </div>
+            <p class="mt-4 text-xs text-nustMuted font-semibold">SEECS &amp; ASAB Joint Lab &bull; 4 min read</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article onclick="openNewsModal(2)" class="reveal-up delay-100 editorial-card dark-glass-card lg:col-span-4 rounded-xl overflow-hidden flex flex-col cursor-pointer group">
+          <div class="h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/0B182E/D4AF37?text=Global+Rankings';"
+              alt="NUST Academic Excellence"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-nustGold">
+                Rankings &amp; Prestige
+              </span>
+              <h3 class="font-editorial font-bold text-xl text-nustLightText mt-2 leading-snug group-hover:text-nustGold transition-colors">
+                NUST Ranks Among Top Asian Universities in Engineering &amp; Technology
+              </h3>
+            </div>
+            <p class="mt-4 text-xs text-nustMuted font-semibold">Global Recognition &bull; 3 min read</p>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article onclick="openNewsModal(3)" class="reveal-up delay-200 editorial-card dark-glass-card lg:col-span-4 rounded-xl overflow-hidden flex flex-col cursor-pointer group">
+          <div class="h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/0F203D/D4AF37?text=Solar+Smart+Campus';"
+              alt="Solar Smart Campus H-12"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-nustGold">
+                Sustainability
+              </span>
+              <h3 class="font-editorial font-bold text-xl text-nustLightText mt-2 leading-snug group-hover:text-nustGold transition-colors">
+                Solar-Powered Smart Campus Initiative Cuts Energy Footprint by 40% in H-12
+              </h3>
+            </div>
+            <p class="mt-4 text-xs text-nustMuted font-semibold">USPCAS-E Green Initiative &bull; 5 min read</p>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article onclick="openNewsModal(4)" class="reveal-up delay-300 editorial-card dark-glass-card lg:col-span-4 rounded-xl overflow-hidden flex flex-col cursor-pointer group">
+          <div class="h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x500/0B182E/D4AF37?text=NUST+Olympiad';"
+              alt="NUST Olympiad Students"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-nustGold">
+                Campus Life
+              </span>
+              <h3 class="font-editorial font-bold text-xl text-nustLightText mt-2 leading-snug group-hover:text-nustGold transition-colors">
+                Annual NUST Olympiad Welcomes Over 5,000 Students Nationwide
+              </h3>
+            </div>
+            <p class="mt-4 text-xs text-nustMuted font-semibold">Student Affairs &bull; 3 min read</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Centered More News Button -->
+      <div class="text-center mt-12 reveal-up">
+        <button onclick="openNewsModal(0)" class="btn-gold-exec inline-flex items-center justify-center bg-nustCard hover:bg-nustBlue text-nustLightText border border-nustGold/50 hover:border-nustGold font-bold text-base sm:text-lg px-9 py-4 rounded-md shadow-lg">
+          More NUST News
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 3: "ACADEMICS" + SEVEN SCHOOLS & COLLEGES BAR
+       ========================================================= -->
+  <section id="academics" class="relative py-20 sm:py-28 bg-nustMidnight border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Centered Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+        <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+          Academics
+        </h2>
+        <p class="mt-4 text-lg sm:text-xl text-nustSilver leading-relaxed">
+          Preparing students to make meaningful contributions to society as engaged citizens and leaders in a complex world
+        </p>
+      </div>
+
+      <!-- 3-Column Academic Tiers -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-9">
+        <!-- Undergraduate -->
+        <div class="reveal-up delay-100 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0B182E/D4AF37?text=Undergraduate+Education';"
+              alt="NUST Undergraduate Students"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">
+            Undergraduate Education
+          </h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            Rich learning experiences across 45+ bachelor’s degrees in engineering, computing, natural sciences, architecture, business, and social sciences.
+          </p>
+          <div class="mt-5">
+            <button onclick="openAdmissionModal('Undergraduate')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Undergraduate Education</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Graduate -->
+        <div class="reveal-up delay-200 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0F203D/D4AF37?text=Graduate+Research';"
+              alt="NUST Graduate Laboratory Research"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">
+            Graduate Education
+          </h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            Unsurpassed opportunities to participate in the advancement of entire fields of knowledge through MS and PhD programs supervised by leading scholars.
+          </p>
+          <div class="mt-5">
+            <button onclick="openAdmissionModal('Graduate')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Graduate Education</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Driving Impact / Lifelong Learning -->
+        <div class="reveal-up delay-300 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0B182E/D4AF37?text=Professional+Development';"
+              alt="NUST Professional Development Centre"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">
+            Driving Impact
+          </h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            Continuing executive education, professional development certifications, and global summer exchange programs extending NUST excellence worldwide.
+          </p>
+          <div class="mt-5">
+            <button onclick="openAdmissionModal('Lifelong Learning')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Lifelong Learning</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stanford-Inspired "Seven Schools in which to pursue your passions" Interactive Bar -->
+      <div class="mt-20 pt-14 border-t border-white/10 text-center reveal-up">
+        <h3 class="font-editorial font-bold text-2xl sm:text-3xl text-nustLightText">
+          Seven Schools in which to pursue your passions
+        </h3>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-2 sm:gap-x-4 text-lg sm:text-xl font-bold text-nustSilver">
+          <button onclick="selectSchool('SEECS')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition text-nustGold underline decoration-nustGold decoration-2 underline-offset-4" data-school="SEECS">SEECS</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('SMME')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="SMME">SMME</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('NBS')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="NBS">NBS</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('S3H')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="S3H">S3H</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('SCME')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="SCME">SCME</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('NICE')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="NICE">NICE</button>
+          <span class="text-white/20">|</span>
+          <button onclick="selectSchool('ASAB')" class="school-tab px-3.5 py-1.5 rounded-md hover:bg-white/10 transition" data-school="ASAB">ASAB</button>
+        </div>
+
+        <!-- Dynamic School Spotlight Panel -->
+        <div id="school-spotlight" class="mt-8 max-w-3xl mx-auto dark-glass-card rounded-xl p-6 sm:p-8 text-left shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
+            <div>
+              <span id="school-badge" class="text-xs font-bold uppercase tracking-widest text-nustGold">H-12 Main Campus &bull; Computing &amp; Engineering</span>
+              <h4 id="school-title" class="font-editorial font-bold text-xl sm:text-2xl text-nustLightText mt-1">
+                School of Electrical Engineering &amp; Computer Science (SEECS)
+              </h4>
+            </div>
+            <span id="school-programs" class="text-xs font-bold bg-nustGold text-nustObsidian px-3.5 py-1.5 rounded-full self-start sm:self-center shadow">
+              BS, MS &amp; PhD Programs
+            </span>
+          </div>
+          <p id="school-desc" class="mt-4 text-nustSilver text-base leading-relaxed">
+            Pakistan’s flagship hub for Computer Science, Software Engineering, Artificial Intelligence, Data Science, Electrical Engineering, and Information Security with direct industry links to NSTP.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 4: "RESEARCH" WITH STANFORD 3-COLUMN METRICS BAR
+       ========================================================= -->
+  <section id="research" class="relative py-20 sm:py-28 bg-nustObsidian border-t border-white/10 overflow-hidden">
+    <!-- Subtle Ambient Glow -->
+    <div class="ambient-orb absolute bottom-10 left-1/4 w-[480px] h-[480px] rounded-full bg-nustGold/5 blur-[130px]"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center max-w-3xl mx-auto reveal-up">
+        <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+          Research
+        </h2>
+        <p class="mt-4 text-lg sm:text-xl text-nustMuted leading-relaxed">
+          Driving discoveries vital to our world, our health, and our intellectual life
+        </p>
+      </div>
+
+      <!-- Stanford Signature Horizontal 3-Column Stat Bar with Animated Counters -->
+      <div id="research-metrics" class="reveal-up mt-14 py-10 border-y border-white/15 grid grid-cols-1 md:grid-cols-3 gap-8 text-center bg-nustNavy/40 rounded-2xl">
+        <div>
+          <p class="font-editorial font-black text-4xl sm:text-5xl text-nustGold drop-shadow">
+            <span class="stat-counter" data-target="18" data-suffix="+">18+</span>
+          </p>
+          <p class="mt-2 text-base sm:text-lg text-nustLightText font-medium">Constituent Schools &amp; Campuses</p>
+        </div>
+        <div class="md:border-x md:border-white/15 px-4">
+          <p class="font-editorial font-black text-4xl sm:text-5xl text-nustGold drop-shadow">
+            <span class="stat-counter" data-prefix="PKR " data-target="4.5" data-decimals="1" data-suffix="B+">PKR 4.5B+</span>
+          </p>
+          <p class="mt-2 text-base sm:text-lg text-nustLightText font-medium">Sponsored Research &amp; Innovation Grants</p>
+        </div>
+        <div>
+          <p class="font-editorial font-black text-4xl sm:text-5xl text-nustGold drop-shadow">
+            <span class="stat-counter" data-target="100" data-suffix="+">100+</span>
+          </p>
+          <p class="mt-2 text-base sm:text-lg text-nustLightText font-medium">High-Tech Companies at NSTP</p>
+        </div>
+      </div>
+
+      <!-- Interactive Research Domain Spotlight -->
+      <div class="mt-14 reveal-scale">
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <button onclick="selectResearch('ai')" id="res-btn-ai" class="res-tab px-5 py-2.5 rounded-full text-sm sm:text-base font-bold bg-nustGold text-nustObsidian shadow-lg transition">
+            AI, Robotics &amp; Cyber Security
+          </button>
+          <button onclick="selectResearch('energy')" id="res-btn-energy" class="res-tab px-5 py-2.5 rounded-full text-sm sm:text-base font-bold bg-nustCard text-nustLightText border border-white/15 hover:border-nustGold transition">
+            Clean Energy &amp; Climate Resilience
+          </button>
+          <button onclick="selectResearch('bio')" id="res-btn-bio" class="res-tab px-5 py-2.5 rounded-full text-sm sm:text-base font-bold bg-nustCard text-nustLightText border border-white/15 hover:border-nustGold transition">
+            Biosciences &amp; Precision Medicine
+          </button>
+        </div>
+
+        <div id="research-panel" class="dark-glass-card rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
+          <div class="lg:col-span-6 h-72 sm:h-96 overflow-hidden">
+            <img
+              id="res-img"
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1100&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/900x600/0B182E/D4AF37?text=NUST+Robotics+and+AI';"
+              alt="NUST Research Center"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+          </div>
+          <div class="lg:col-span-6 p-8 sm:p-12 flex flex-col justify-center">
+            <span id="res-tag" class="text-xs font-bold uppercase tracking-widest text-nustGold">
+              National Center of Artificial Intelligence (NCAI)
+            </span>
+            <h3 id="res-title" class="font-editorial font-bold text-2xl sm:text-3xl text-nustLightText mt-2">
+              Autonomous Systems, Precision Agriculture &amp; National Cyber Defense
+            </h3>
+            <p id="res-desc" class="mt-4 text-nustSilver text-base sm:text-lg leading-relaxed">
+              Housing specialized laboratories in deep learning, computer vision, and indigenous robotics, NUST researchers collaborate with global partners to solve real-world industrial and societal challenges.
+            </p>
+            <div class="mt-6">
+              <button onclick="openMissionModal()" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+                <span>Explore Research Centers &amp; Labs</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal-up">
+        <button onclick="openMissionModal()" class="btn-gold-exec inline-flex items-center justify-center bg-nustCard hover:bg-nustBlue text-nustLightText border border-nustGold/50 hover:border-nustGold font-bold text-base sm:text-lg px-9 py-4 rounded-md shadow-lg">
+          More about Research
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 5: "HEALTH CARE & WELLNESS" + "UPCOMING EVENTS"
+       ========================================================= -->
+  <section id="wellness" class="relative py-20 sm:py-24 bg-nustMidnight border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Health & Wellness Editorial Feature -->
+        <div class="lg:col-span-7 reveal-left">
+          <span class="text-xs font-bold uppercase tracking-widest text-nustGold">Campus Health &amp; Wellbeing</span>
+          <h2 class="font-editorial font-bold text-3xl sm:text-4xl text-nustLightText mt-2">
+            Advancing Community Health, Medical Innovation &amp; Student Wellness
+          </h2>
+          <p class="mt-4 text-lg text-nustSilver leading-relaxed">
+            Through the NUST School of Health Sciences (NSHS), the NUST Medical Centre, and the Centre for Counselling &amp; Career Advisory (C3A), we foster holistic physical and mental wellbeing alongside clinical research excellence.
+          </p>
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="dark-glass-card p-5 rounded-xl">
+              <h4 class="font-bold text-nustGold text-base">24/7 Campus Medical Centre</h4>
+              <p class="text-sm text-nustSilver mt-1.5">Comprehensive healthcare, emergency response, and diagnostic care in H-12.</p>
+            </div>
+            <div class="dark-glass-card p-5 rounded-xl">
+              <h4 class="font-bold text-nustGold text-base">C3A Counselling &amp; Mentorship</h4>
+              <p class="text-sm text-nustSilver mt-1.5">Confidential psychological support, peer wellness programs, and career guidance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Events Column -->
+        <div id="events" class="lg:col-span-5 dark-glass-card rounded-2xl p-6 sm:p-8 shadow-xl reveal-right">
+          <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-6">
+            <h3 class="font-editorial font-bold text-2xl text-nustLightText">Upcoming Events</h3>
+            <span class="text-xs font-bold uppercase tracking-wider text-nustGold">Academic Calendar</span>
+          </div>
+          <div class="space-y-5">
+            <div class="event-item flex gap-4 items-start">
+              <div class="event-date-badge w-14 h-16 rounded-lg bg-nustObsidian border border-nustGold/40 text-nustLightText flex flex-col items-center justify-center shrink-0">
+                <span class="text-[11px] uppercase font-bold text-nustGold">DEC</span>
+                <span class="font-editorial font-bold text-xl leading-none mt-0.5">04</span>
+              </div>
+              <div>
+                <span class="text-xs font-bold uppercase text-nustGold">Symposium</span>
+                <h4 class="font-editorial font-bold text-base text-nustLightText leading-snug">
+                  International Conference on Frontiers of Information Technology (FIT)
+                </h4>
+                <p class="text-xs text-nustMuted mt-1">Jinnah Auditorium, H-12 Islamabad</p>
+              </div>
+            </div>
+
+            <div class="event-item flex gap-4 items-start pt-4 border-t border-white/10">
+              <div class="event-date-badge w-14 h-16 rounded-lg bg-nustObsidian border border-nustGold/40 text-nustLightText flex flex-col items-center justify-center shrink-0">
+                <span class="text-[11px] uppercase font-bold text-nustGold">DEC</span>
+                <span class="font-editorial font-bold text-xl leading-none mt-0.5">12</span>
+              </div>
+              <div>
+                <span class="text-xs font-bold uppercase text-nustGold">Admissions</span>
+                <h4 class="font-editorial font-bold text-base text-nustLightText leading-snug">
+                  NUST Entry Test (NET) Series-1 Orientation &amp; Campus Open House
+                </h4>
+                <p class="text-xs text-nustMuted mt-1">Main Office &amp; Virtual Live Stream</p>
+              </div>
+            </div>
+
+            <div class="event-item flex gap-4 items-start pt-4 border-t border-white/10">
+              <div class="event-date-badge w-14 h-16 rounded-lg bg-nustObsidian border border-nustGold/40 text-nustLightText flex flex-col items-center justify-center shrink-0">
+                <span class="text-[11px] uppercase font-bold text-nustGold">JAN</span>
+                <span class="font-editorial font-bold text-xl leading-none mt-0.5">18</span>
+              </div>
+              <div>
+                <span class="text-xs font-bold uppercase text-nustGold">Innovation</span>
+                <h4 class="font-editorial font-bold text-base text-nustLightText leading-snug">
+                  NSTP Startup Demo Day &amp; Venture Capital Showcase
+                </h4>
+                <p class="text-xs text-nustMuted mt-1">NSTP Innovation Atrium, Sector H-12</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 6: "CAMPUS LIFE" (3-COLUMN EDITORIAL SHOWCASE)
+       ========================================================= -->
+  <section id="campus-life" class="relative py-20 sm:py-28 bg-nustObsidian border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+        <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+          Campus Life
+        </h2>
+        <p class="mt-4 text-lg sm:text-xl text-nustMuted">
+          Building a vibrant community of creative and accomplished people from every corner of Pakistan and beyond
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-9">
+        <!-- Student Life -->
+        <div class="reveal-up delay-100 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0B182E/D4AF37?text=Student+Life+H12';"
+              alt="Student Life at NUST H-12"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">Student Life in H-12</h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            A lush 707-acre residential campus at the foothills of the Margalla Hills featuring 16 student hostels, central library, cafes, and 50+ student-led societies.
+          </p>
+          <div class="mt-5">
+            <button onclick="openInfoModal('Students')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Explore Student Affairs</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Arts & Culture -->
+        <div class="reveal-up delay-200 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0F203D/D4AF37?text=Arts+and+Culture';"
+              alt="Arts and Cultural Societies at NUST"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">Arts &amp; Culture</h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            A rich tradition of literary debates, fine arts exhibitions, dramatics, music festivals, and cultural galas celebrating Pakistan’s diverse heritage.
+          </p>
+          <div class="mt-5">
+            <button onclick="openInfoModal('Visitors')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Discover Societies &amp; Clubs</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Athletics & Sports -->
+        <div class="reveal-up delay-300 editorial-card dark-glass-card rounded-2xl p-6 flex flex-col">
+          <div class="rounded-xl overflow-hidden h-60 shadow-md mb-6 border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=900&q=80"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x550/0B182E/D4AF37?text=NUST+Sports+Complex';"
+              alt="NUST Sports Complex"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">Athletics &amp; Sports Complex</h3>
+          <p class="mt-3 text-base text-nustSilver leading-relaxed flex-1">
+            Olympic-standard indoor gymnasium, cricket and football stadiums, tennis and squash courts, swimming pool, and equestrian club fostering sportsmanship.
+          </p>
+          <div class="mt-5">
+            <button onclick="openInfoModal('Students')" class="stanford-link text-nustGold font-bold text-base hover:text-nustLightText transition-colors">
+              <span>Sports &amp; Recreation</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 7: "ADMISSION" (STANFORD EDITORIAL SPLIT + CTA)
+       ========================================================= -->
+  <section id="admission" class="relative py-20 sm:py-28 bg-nustMidnight border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <h2 class="font-editorial font-bold text-3xl sm:text-5xl text-nustLightText tracking-tight">
+          Admission
+        </h2>
+        <p class="mt-4 text-lg sm:text-xl text-nustSilver">
+          Offering extraordinary freedom to explore, to collaborate, and to challenge yourself
+        </p>
+      </div>
+
+      <!-- High-Impact Full-Width Campus Banner -->
+      <div class="reveal-scale rounded-2xl overflow-hidden shadow-2xl mb-12 border border-white/15 relative">
+        <img
+          src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=1800&q=85"
+          onerror="this.onerror=null;this.src='https://placehold.co/1600x650/0B182E/D4AF37?text=Welcome+to+NUST+Admissions';"
+          alt="NUST Graduating Class and Campus"
+          class="w-full h-72 sm:h-[440px] object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-nustObsidian/70 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Two-Column Editorial Admission Details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto reveal-up">
+        <div class="dark-glass-card rounded-2xl p-7">
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">
+            Explore the possibilities of a NUST education
+          </h3>
+          <p class="mt-3 text-base sm:text-lg text-nustSilver leading-relaxed">
+            Admission to NUST is strictly merit-based through the computer-based NUST Entry Test (NET), SAT, or ACT scores. We welcome talented students from every province of Pakistan and over 35 international countries.
+          </p>
+        </div>
+        <div class="dark-glass-card rounded-2xl p-7">
+          <h3 class="font-editorial font-bold text-2xl text-nustLightText">
+            Need-Blind Financial Aid &amp; Scholarships
+          </h3>
+          <p class="mt-3 text-base sm:text-lg text-nustSilver leading-relaxed">
+            NUST is committed to ensuring that financial circumstances never stand in the way of a deserving scholar. Over 25% of undergraduate students receive merit scholarships, interest-free loans, or need-based support.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal-up">
+        <button onclick="openAdmissionModal('Undergraduate')" class="btn-gold-exec inline-flex items-center justify-center bg-nustGold hover:bg-nustGoldDark text-nustObsidian font-bold text-base sm:text-lg px-10 py-4 rounded-md shadow-xl">
+          More about Admission
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PRE-FOOTER SOCIAL & CAMPUS LOCATION BAR
+       ========================================================= -->
+  <div class="bg-nustNavy border-t border-white/10 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 text-nustSilver">
+        <i class="fa-solid fa-location-dot text-nustGold text-lg"></i>
+        <span class="text-sm sm:text-base font-semibold">
+          Sector H-12, Islamabad, 44000, Pakistan &bull; UAN: +92-51-111-11-6878
+        </span>
+      </div>
+      <div class="flex items-center space-x-5 text-nustSilver text-xl">
+        <a href="#footer" aria-label="NUST on Facebook" class="hover:text-nustGold hover:-translate-y-0.5 transition-all"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#footer" aria-label="NUST on X Twitter" class="hover:text-nustGold hover:-translate-y-0.5 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#footer" aria-label="NUST on Instagram" class="hover:text-nustGold hover:-translate-y-0.5 transition-all"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#footer" aria-label="NUST on LinkedIn" class="hover:text-nustGold hover:-translate-y-0.5 transition-all"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#footer" aria-label="NUST on YouTube" class="hover:text-nustGold hover:-translate-y-0.5 transition-all"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       COMPREHENSIVE 6-COLUMN UNIVERSITY DIRECTORY FOOTER
+       ========================================================= -->
+  <footer id="footer" class="bg-nustObsidian border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 reveal-up">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-sm">
+        <!-- Col 1: Schools -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-nustGold mb-4">Schools</h4>
+          <ul class="space-y-2.5 text-nustSilver">
+            <li><button onclick="selectSchool('SEECS');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">SEECS (Computing &amp; EE)</button></li>
+            <li><button onclick="selectSchool('SMME');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">SMME (Mechanical &amp; Mfg)</button></li>
+            <li><button onclick="selectSchool('NBS');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">NUST Business School</button></li>
+            <li><button onclick="selectSchool('S3H');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">Social Sciences (S3H)</button></li>
+            <li><button onclick="selectSchool('SCME');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">Chemical &amp; Materials</button></li>
+            <li><button onclick="selectSchool('NICE');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">Civil &amp; Environmental</button></li>
+            <li><button onclick="selectSchool('ASAB');document.getElementById('academics').scrollIntoView()" class="hover:text-nustGold hover:underline text-left">Applied Biosciences</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Campuses -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-nustGold mb-4">Campuses</h4>
+          <ul class="space-y-2.5 text-nustSilver">
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">Islamabad (H-12 Main)</a></li>
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">Rawalpindi (EME &amp; MCS)</a></li>
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">Risalpur (CAE &amp; MCE)</a></li>
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">Karachi (PNEC)</a></li>
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">Quetta (NBC)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Research & Innovation -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-nustGold mb-4">Research</h4>
+          <ul class="space-y-2.5 text-nustSilver">
+            <li><a href="#research" class="hover:text-nustGold hover:underline">Research Centers A–Z</a></li>
+            <li><a href="#research" class="hover:text-nustGold hover:underline">NSTP Tech Park</a></li>
+            <li><a href="#research" class="hover:text-nustGold hover:underline">Central Library</a></li>
+            <li><a href="#research" class="hover:text-nustGold hover:underline">ORIC &amp; IP Office</a></li>
+            <li><a href="#research" class="hover:text-nustGold hover:underline">NUST Journals</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Admission -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-nustGold mb-4">Admission</h4>
+          <ul class="space-y-2.5 text-nustSilver">
+            <li><button onclick="openAdmissionModal('Undergraduate')" class="hover:text-nustGold hover:underline text-left">Undergraduate (NET)</button></li>
+            <li><button onclick="openAdmissionModal('Graduate')" class="hover:text-nustGold hover:underline text-left">Graduate (MS / PhD)</button></li>
+            <li><button onclick="openAdmissionModal('Undergraduate')" class="hover:text-nustGold hover:underline text-left">International Students</button></li>
+            <li><button onclick="openAdmissionModal('Undergraduate')" class="hover:text-nustGold hover:underline text-left">Financial Aid</button></li>
+            <li><button onclick="openAdmissionModal('Undergraduate')" class="hover:text-nustGold hover:underline text-left">Fee Structure</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Resources -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-nustGold mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-nustSilver">
+            <li><a href="#campus-life" class="hover:text-nustGold hover:underline">Campus Map</a></li>
+            <li><a href="#wellness" class="hover:text-nustGold hover:underline">Community Engagement</a></li>
+            <li><a href="#news" class="hover:text-nustGold hover:underline">Directory</a></li>
+            <li><a href="#mission" class="hover:text-nustGold hover:underline">NUST Profiles</a></li>
+            <li><a href="#events" class="hover:text-nustGold hover:underline">Academic Calendar</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 6: Quick Action Buttons -->
+        <div class="col-span-2 sm:col-span-1 flex flex-col space-y-3">
+          <button onclick="openAdmissionModal('Undergraduate')" class="w-full py-2.5 px-4 border border-nustGold/60 text-nustLightText hover:bg-nustGold hover:text-nustObsidian font-bold rounded transition text-center">
+            Applying
+          </button>
+          <button onclick="openInfoModal('Visitors')" class="w-full py-2.5 px-4 border border-nustGold/60 text-nustLightText hover:bg-nustGold hover:text-nustObsidian font-bold rounded transition text-center">
+            Visiting
+          </button>
+          <button onclick="openMissionModal()" class="w-full py-2.5 px-4 border border-nustGold/60 text-nustLightText hover:bg-nustGold hover:text-nustObsidian font-bold rounded transition text-center">
+            Giving
+          </button>
+          <button onclick="openInfoModal('Faculty & Staff')" class="w-full py-2.5 px-4 border border-nustGold/60 text-nustLightText hover:bg-nustGold hover:text-nustObsidian font-bold rounded transition text-center">
+            Careers
+          </button>
+          <button onclick="openInfoModal('Visitors')" class="w-full py-2.5 px-4 border border-nustGold/60 text-nustLightText hover:bg-nustGold hover:text-nustObsidian font-bold rounded transition text-center">
+            Contact
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Deep Obsidian Legal Bar -->
+    <div class="bg-nustDeep text-nustSilver py-8 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="font-editorial font-black text-2xl sm:text-3xl tracking-tight text-nustLightText">NUST</span>
+          <span class="text-white/25">|</span>
+          <span class="font-editorial text-sm sm:text-base text-nustSilver">National University of Sciences &amp; Technology</span>
+        </div>
+
+        <div class="space-y-2 text-xs sm:text-sm text-nustSilver">
+          <div class="flex flex-wrap gap-x-5 gap-y-1.5 font-semibold">
+            <a href="#" class="hover:text-nustGold transition">NUST Home</a>
+            <a href="#campus-life" class="hover:text-nustGold transition">Maps &amp; Directions</a>
+            <button onclick="toggleSearchOverlay()" class="hover:text-nustGold transition">Search NUST</button>
+            <a href="#wellness" class="hover:text-nustGold transition">Emergency Info</a>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-1 text-nustMuted text-xs">
+            <a href="#footer" class="hover:text-nustLightText hover:underline">Terms of Use</a>
+            <a href="#footer" class="hover:text-nustLightText hover:underline">Privacy Policy</a>
+            <a href="#footer" class="hover:text-nustLightText hover:underline">Copyright</a>
+            <a href="#footer" class="hover:text-nustLightText hover:underline">Non-Discrimination</a>
+            <a href="#footer" class="hover:text-nustLightText hover:underline">Accessibility</a>
+          </div>
+          <p class="text-nustMuted text-xs pt-1">
+            &copy; 2026 National University of Sciences &amp; Technology (NUST), Sector H-12, Islamabad, Pakistan. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       INTERACTIVE DARK GLASS SEARCH OVERLAY MODAL
+       ========================================================= -->
+  <div id="search-overlay" class="modal-backdrop fixed inset-0 z-50 hidden bg-nustObsidian/95 backdrop-blur-md flex items-start justify-center pt-20 sm:pt-28 px-4">
+    <div class="modal-dialog w-full max-w-3xl">
+      <div class="flex justify-end mb-6">
+        <button onclick="toggleSearchOverlay()" class="text-nustLightText hover:text-nustGold text-sm font-bold uppercase tracking-widest flex items-center gap-2 px-3.5 py-1.5 rounded border border-white/20 hover:border-nustGold transition">
+          <span>Close</span>
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="bg-nustCard border border-nustGold/40 rounded-xl p-2 flex items-center shadow-2xl">
+        <i class="fa-solid fa-magnifying-glass text-nustGold text-xl ml-4"></i>
+        <input
+          id="search-input"
+          type="text"
+          oninput="handleSearch(this.value)"
+          placeholder="Search NUST programs, NET admissions, schools, or research..."
+          class="w-full px-4 py-3.5 text-base sm:text-lg bg-transparent text-nustLightText placeholder-nustMuted focus:outline-none"
+        />
+      </div>
+      <div id="search-results" class="mt-4 bg-nustNavy/90 border border-white/10 rounded-xl p-5 text-nustLightText space-y-3">
+        <p class="text-xs uppercase tracking-widest text-nustGold font-bold">Popular Searches</p>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="quickSearch('NET Entry Test')" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-nustGold hover:text-nustObsidian text-sm font-semibold transition">NET Entry Test</button>
+          <button onclick="quickSearch('Computer Science SEECS')" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-nustGold hover:text-nustObsidian text-sm font-semibold transition">Computer Science (SEECS)</button>
+          <button onclick="quickSearch('NSTP Startups')" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-nustGold hover:text-nustObsidian text-sm font-semibold transition">NSTP Tech Park</button>
+          <button onclick="quickSearch('Scholarships & Financial Aid')" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-nustGold hover:text-nustObsidian text-sm font-semibold transition">Scholarships &amp; Aid</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       UNIVERSAL DARK EDITORIAL READER / ADMISSIONS / INFO MODAL
+       ========================================================= -->
+  <div id="editorial-modal" class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-dialog bg-nustMidnight rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-nustGold/30">
+      <div class="sticky top-0 bg-nustObsidian border-b border-white/10 text-nustLightText px-6 py-4 flex items-center justify-between">
+        <span id="modal-category" class="text-xs font-bold uppercase tracking-widest text-nustGold">NUST Editorial</span>
+        <button onclick="closeEditorialModal()" aria-label="Close Dialog" class="text-nustSilver hover:text-nustGold p-1 transition">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <div class="p-6 sm:p-8">
+        <h3 id="modal-title" class="font-editorial font-bold text-2xl sm:text-3xl text-nustLightText leading-tight"></h3>
+        <div id="modal-body" class="mt-4 text-nustSilver text-base sm:text-lg leading-relaxed space-y-4"></div>
+        <div class="mt-8 pt-5 border-t border-white/10 flex justify-end">
+          <button onclick="closeEditorialModal()" class="bg-nustGold hover:bg-nustGoldDark text-nustObsidian font-bold px-6 py-2.5 rounded-md transition">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT INTERACTIVITY & ANIMATION ENGINE
+       ========================================================= -->
+  <script>
+    // 1. Sticky Header Scroll & Top Gold Scroll Progress Bar
+    const header = document.getElementById('main-header');
+    const scrollProgress = document.getElementById('scroll-progress');
+
+    function updateScrollEffects() {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0 && scrollProgress) {
+        const pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+        scrollProgress.style.width = `${pct}%`;
+      }
+    }
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+    updateScrollEffects();
+
+    // 2. Intersection Observer for Scroll-Triggered Reveals & Stat Counters
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Animated Number Count-Up for Research Metrics
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = (target * eased).toFixed(decimals);
+        el.textContent = `${prefix}${current}${suffix}`;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const metricsSection = document.getElementById('research-metrics');
+    if (metricsSection) {
+      const metricsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.stat-counter').forEach(animateCounter);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      metricsObserver.observe(metricsSection);
+    }
+
+    // 3. Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (icon) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-xmark');
+        }
+      } else {
+        menu.classList.add('hidden');
+        if (icon) {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
+      }
+    }
+
+    // 4. Search Overlay Logic with Smooth Spring Transition
+    const searchDirectory = [
+      { title: 'NUST Entry Test (NET) Undergraduate Admissions', section: '#admission', desc: 'Apply for BS Engineering, Computing, Business & Social Sciences.' },
+      { title: 'School of Electrical Engineering & Computer Science (SEECS)', section: '#academics', desc: 'BS/MS/PhD in CS, AI, Data Science, Software & Electrical Engineering.' },
+      { title: 'National Science & Technology Park (NSTP)', section: '#news', desc: '100+ high-tech startups, R&D centers, and innovation ecosystem in H-12.' },
+      { title: 'Need-Blind Financial Aid & Merit Scholarships', section: '#admission', desc: 'Comprehensive tuition waivers and stipends for deserving students.' },
+      { title: 'NUST Business School (NBS) & S3H', section: '#academics', desc: 'BBA, MBA, Economics, Psychology, and Public Administration programs.' },
+      { title: 'Research Centers & Laboratories', section: '#research', desc: 'National Centers in AI, Robotics, Cyber Security, and Clean Energy.' }
+    ];
+
+    function toggleSearchOverlay() {
+      const overlay = document.getElementById('search-overlay');
+      const isHidden = overlay.classList.contains('hidden');
+      if (isHidden) {
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(() => overlay.classList.add('active'));
+        setTimeout(() => document.getElementById('search-input').focus(), 120);
+      } else {
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.classList.add('hidden'), 260);
+      }
+    }
+
+    function quickSearch(term) {
+      const input = document.getElementById('search-input');
+      input.value = term;
+      handleSearch(term);
+    }
+
+    function handleSearch(query) {
+      const container = document.getElementById('search-results');
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        container.innerHTML = `<p class="text-sm text-nustSilver">Type a keyword above to search NUST schools, programs, and news.</p>`;
+        return;
+      }
+      const matches = searchDirectory.filter(item =>
+        item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q)
+      );
+      if (matches.length === 0) {
+        container.innerHTML = `<p class="text-sm text-nustSilver">No direct matches found for "<strong class="text-nustGold">${query}</strong>". Try searching for <em>NET</em>, <em>SEECS</em>, <em>NSTP</em>, or <em>Scholarships</em>.</p>`;
+        return;
+      }
+      container.innerHTML = matches.map(m => `
+        <a href="${m.section}" onclick="toggleSearchOverlay()" class="block p-3.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 hover:border-nustGold/50 transition">
+          <div class="font-bold text-nustGold text-base">${m.title}</div>
+          <div class="text-sm text-nustSilver mt-0.5">${m.desc}</div>
+        </a>
+      `).join('');
+    }
+
+    // 5. Seven Schools Interactive Selector with Cross-Fade
+    const schoolsData = {
+      SEECS: {
+        badge: 'H-12 Main Campus • Computing & Engineering',
+        title: 'School of Electrical Engineering & Computer Science (SEECS)',
+        programs: 'BS, MS & PhD Programs',
+        desc: 'Pakistan’s flagship hub for Computer Science, Software Engineering, Artificial Intelligence, Data Science, Electrical Engineering, and Information Security with direct industry links to NSTP.'
+      },
+      SMME: {
+        badge: 'H-12 Main Campus • Robotics & Manufacturing',
+        title: 'School of Mechanical & Manufacturing Engineering (SMME)',
+        programs: 'BE, MS & PhD Programs',
+        desc: 'Leading innovation in Mechanical Engineering, Robotics & Intelligent Machine Engineering, Biomedical Engineering, and Industrial Automation.'
+      },
+      NBS: {
+        badge: 'H-12 Main Campus • Management & Finance',
+        title: 'NUST Business School (NBS)',
+        programs: 'BBA, MBA & PhD Programs',
+        desc: 'Developing ethical corporate leaders and entrepreneurs through globally benchmarked programs in Business Administration, Accounting & Finance, and Tourism Management.'
+      },
+      S3H: {
+        badge: 'H-12 Main Campus • Policy & Humanities',
+        title: 'School of Social Sciences & Humanities (S3H)',
+        programs: 'BS, MS & PhD Programs',
+        desc: 'Fostering critical inquiry in Economics, Mass Communication, Clinical Psychology, Public Administration, and Development Studies.'
+      },
+      SCME: {
+        badge: 'H-12 Main Campus • Materials & Energy',
+        title: 'School of Chemical & Materials Engineering (SCME)',
+        programs: 'BE, MS & PhD Programs',
+        desc: 'Pioneering research in Chemical Engineering, Metallurgy & Materials Engineering, Nanotechnology, and Sustainable Process Design.'
+      },
+      NICE: {
+        badge: 'H-12 Main Campus • Infrastructure & Climate',
+        title: 'NUST Institute of Civil Engineering (NICE)',
+        programs: 'BE, MS & PhD Programs',
+        desc: 'Advancing resilient infrastructure, structural engineering, geotechnical systems, water resources, and smart urban transportation.'
+      },
+      ASAB: {
+        badge: 'H-12 Main Campus • Biotechnology & Health',
+        title: 'Atta-ur-Rahman School of Applied Biosciences (ASAB)',
+        programs: 'BS, MS & PhD Programs',
+        desc: 'World-class research in Healthcare Biotechnology, Plant Biotechnology, Industrial Biosciences, and Molecular Virology.'
+      }
+    };
+
+    function triggerPanelAnimation(el) {
+      if (!el) return;
+      el.classList.remove('animate-panel-switch');
+      void el.offsetWidth;
+      el.classList.add('animate-panel-switch');
+    }
+
+    function selectSchool(code) {
+      const data = schoolsData[code];
+      if (!data) return;
+      const spotlight = document.getElementById('school-spotlight');
+      document.getElementById('school-badge').textContent = data.badge;
+      document.getElementById('school-title').textContent = data.title;
+      document.getElementById('school-programs').textContent = data.programs;
+      document.getElementById('school-desc').textContent = data.desc;
+      triggerPanelAnimation(spotlight);
+
+      document.querySelectorAll('.school-tab').forEach(btn => {
+        if (btn.dataset.school === code) {
+          btn.classList.add('text-nustGold', 'underline', 'decoration-nustGold', 'decoration-2', 'underline-offset-4');
+        } else {
+          btn.classList.remove('text-nustGold', 'underline', 'decoration-nustGold', 'decoration-2', 'underline-offset-4');
+        }
+      });
+    }
+
+    // 6. Research Spotlight Tabs with Cross-Fade
+    const researchData = {
+      ai: {
+        tag: 'National Center of Artificial Intelligence (NCAI)',
+        title: 'Autonomous Systems, Precision Agriculture & National Cyber Defense',
+        desc: 'Housing specialized laboratories in deep learning, computer vision, and indigenous robotics, NUST researchers collaborate with global partners to solve real-world industrial and societal challenges.',
+        img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1100&q=80'
+      },
+      energy: {
+        tag: 'US-Pakistan Center for Advanced Studies in Energy (USPCAS-E)',
+        title: 'Next-Generation Photovoltaics, Smart Grids & Hydrogen Fuel Systems',
+        desc: 'Developing affordable renewable energy technologies, thermal storage systems, and climate policy frameworks to power Pakistan’s sustainable energy transition.',
+        img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1100&q=80'
+      },
+      bio: {
+        tag: 'Atta-ur-Rahman School of Applied Biosciences (ASAB)',
+        title: 'Genomic Diagnostics, Vaccine Innovation & Neurobiology',
+        desc: 'Translating molecular discoveries into affordable diagnostic kits, disease-resistant crops, and targeted therapeutics improving public health across South Asia.',
+        img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1100&q=80'
+      }
+    };
+
+    function selectResearch(key) {
+      const item = researchData[key];
+      if (!item) return;
+      const panel = document.getElementById('research-panel');
+      document.getElementById('res-tag').textContent = item.tag;
+      document.getElementById('res-title').textContent = item.title;
+      document.getElementById('res-desc').textContent = item.desc;
+      document.getElementById('res-img').src = item.img;
+      triggerPanelAnimation(panel);
+
+      ['ai', 'energy', 'bio'].forEach(k => {
+        const btn = document.getElementById(`res-btn-${k}`);
+        if (k === key) {
+          btn.className = 'res-tab px-5 py-2.5 rounded-full text-sm sm:text-base font-bold bg-nustGold text-nustObsidian shadow-lg transition';
+        } else {
+          btn.className = 'res-tab px-5 py-2.5 rounded-full text-sm sm:text-base font-bold bg-nustCard text-nustLightText border border-white/15 hover:border-nustGold transition';
+        }
+      });
+    }
+
+    // 7. Editorial Reader Modal (News, Mission, Admissions, Audience Info)
+    const newsArticles = [
+      {
+        category: 'Innovation & Entrepreneurship',
+        title: 'National Science & Technology Park (NSTP) Surpasses 100 High-Tech Startups',
+        body: `<p>Located at the heart of the NUST H-12 campus in Islamabad, the National Science &amp; Technology Park (NSTP) has officially crossed the milestone of 100 resident high-tech startups, R&amp;D centers, and global anchor tenants.</p>
+               <p>Spanning eight key thematic sectors—including AgriTech, AutoTech, EdTech, EnergyTech, FinTech, HealthTech, SmartTech, and DefTech—NSTP bridges academic research with venture capital and global export markets, creating thousands of high-value engineering and data science jobs.</p>`
+      },
+      {
+        category: 'Science & Technology',
+        title: 'NUST Researchers Develop Low-Cost AI Diagnostics for Rural Healthcare',
+        body: `<p>An interdisciplinary team from SEECS and ASAB has unveiled a portable, solar-assisted AI diagnostic platform capable of screening retinal scans and chest radiographs in under 30 seconds without continuous cloud connectivity.</p>
+               <p>Field trials conducted across primary healthcare units in Punjab and Khyber Pakhtunkhwa demonstrated over 94% clinical concordance, offering a scalable solution for underserved communities.</p>`
+      },
+      {
+        category: 'Rankings & Prestige',
+        title: 'NUST Ranks Among Top Asian Universities in Engineering & Technology',
+        body: `<p>In the latest international higher education rankings, the National University of Sciences &amp; Technology (NUST) continues its upward trajectory, ranking #1 in Pakistan and among the top institutions across Asia for Engineering &amp; Technology and Computer Science.</p>
+               <p>The recognition reflects strong employer reputation, high-impact faculty citations, and expanding international research collaborations.</p>`
+      },
+      {
+        category: 'Sustainability',
+        title: 'Solar-Powered Smart Campus Initiative Cuts Energy Footprint by 40% in H-12',
+        body: `<p>Through rooftop solar microgrids, smart IoT building automation, and rainwater harvesting reservoirs, NUST’s Sector H-12 campus has reduced its grid electricity consumption by 40% while serving as a living laboratory for USPCAS-E energy researchers.</p>`
+      },
+      {
+        category: 'Campus Life',
+        title: 'Annual NUST Olympiad Welcomes Over 5,000 Students Nationwide',
+        body: `<p>Over 5,000 student delegates from 120 universities and colleges across Pakistan converged at NUST Islamabad for four days of robotics competitions, parliamentary debates, sports tournaments, and cultural showcases.</p>`
+      }
+    ];
+
+    function openNewsModal(index) {
+      const article = newsArticles[index] || newsArticles[0];
+      showModal(article.category, article.title, article.body);
+    }
+
+    function openMissionModal() {
+      showModal(
+        'About NUST • Est. 1991',
+        'A Premier Research University Shaping Pakistan’s Knowledge Economy',
+        `<p>Established in 1991 to promote higher scientific and technical education in Pakistan, NUST has evolved into a comprehensive, multi-campus research university recognized globally for academic rigor and societal impact.</p>
+         <p>With over 22,000 students enrolled across 18 constituent schools and colleges in Islamabad, Rawalpindi, Risalpur, Karachi, and Quetta, NUST integrates world-class teaching with entrepreneurial incubation at NSTP.</p>`
+      );
+    }
+
+    function openAdmissionModal(level) {
+      showModal(
+        `NUST Admissions • ${level}`,
+        `${level} Admissions & NUST Entry Test (NET)`,
+        `<p>Applications for <strong class="text-nustLightText">${level}</strong> programs are evaluated strictly on merit through the computer-based <strong class="text-nustLightText">NUST Entry Test (NET)</strong> conducted in multiple series across Islamabad, Karachi, Quetta, Gilgit, and Multan.</p>
+         <ul class="list-disc pl-5 space-y-2 text-base">
+           <li><strong class="text-nustGold">NET Series 1–4:</strong> Multiple test windows throughout the academic year.</li>
+           <li><strong class="text-nustGold">International / SAT Basis:</strong> Dedicated seats for overseas Pakistanis and international applicants.</li>
+           <li><strong class="text-nustGold">Financial Aid:</strong> Need-based scholarships and Ehsaas/HEC grants available upon admission offer.</li>
+         </ul>`
+      );
+    }
+
+    function openInfoModal(audience) {
+      showModal(
+        `Information for ${audience}`,
+        `Resources & Portals for NUST ${audience}`,
+        `<p>Welcome to the dedicated gateway for <strong class="text-nustLightText">NUST ${audience}</strong>. Access campus services, academic portals, and administrative directories quickly:</p>
+         <ul class="list-disc pl-5 space-y-2 text-base">
+           <li><strong class="text-nustGold">Qalam LMS &amp; ERP Portal:</strong> Course registration, transcripts, and faculty dashboards.</li>
+           <li><strong class="text-nustGold">H-12 Campus Directory:</strong> Direct extensions for academic schools, hostels, and transport.</li>
+           <li><strong class="text-nustGold">NUST Alumni Network:</strong> Global chapters connecting 50,000+ graduates worldwide.</li>
+         </ul>`
+      );
+    }
+
+    function showModal(category, title, bodyHtml) {
+      const modal = document.getElementById('editorial-modal');
+      document.getElementById('modal-category').textContent = category;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-body').innerHTML = bodyHtml;
+      modal.classList.remove('hidden');
+      requestAnimationFrame(() => modal.classList.add('active'));
+    }
+
+    function closeEditorialModal() {
+      const modal = document.getElementById('editorial-modal');
+      modal.classList.remove('active');
+      setTimeout(() => modal.classList.add('hidden'), 260);
+    }
+
+    // Close modals on Escape key or backdrop click
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeEditorialModal();
+        const searchOverlay = document.getElementById('search-overlay');
+        if (!searchOverlay.classList.contains('hidden')) {
+          toggleSearchOverlay();
+        }
+      }
+    });
+
+    document.getElementById('editorial-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'editorial-modal') closeEditorialModal();
+    });
+  </script>
+</body>
+</html>
